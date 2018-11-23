@@ -45,6 +45,8 @@ def get_body(request):
 
 
 import json
+
+
 def get_body_json(request):
     json_str = request.body
     json_str = json_str.decode()  # python3.6 无需执行此步
@@ -57,3 +59,15 @@ def get_body_json(request):
 def get_headers(request):
     print(request.META['CONTENT_TYPE'])
     return HttpResponse('OK')
+
+
+from django.http import HttpResponse
+
+
+def demo_view(request):
+    return HttpResponse('itcast python', status=400)
+    # 或者
+    # response = HttpResponse('itcast python')
+    # response.status_code = 400
+    # response['Itcast'] = 'Python'
+    # return response

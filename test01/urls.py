@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^json/', views.get_body_json),
     url(r'^headers/', views.get_headers),
 
+    url(r'^response/', views.demo_view),
+
 
     url(r'^$', views.index, name='index'),
 ]
