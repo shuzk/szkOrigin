@@ -34,11 +34,11 @@ def qs(request):
     return HttpResponse('OK')
 
 
-# def get_body(request):
-#     a = request.POST.get('a')
-#     b = request.POST.get('b')
-#     alist = request.POST.getlist('a')
-#     print(a)
-#     print(b)
-#     print(alist)
-#     return HttpResponse('OK')
+def get_body(request):
+    a = request.POST.get('a')
+    b = request.POST.get('b')
+    alist = request.POST.getlist('a')
+    print(a)
+    print(b)
+    print(alist)
+    return HttpResponse('OK')
