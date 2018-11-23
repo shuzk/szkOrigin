@@ -78,3 +78,10 @@ from django.http import JsonResponse
 
 def demo_view2(request):
     return JsonResponse({'city': 'beijing', 'subject': 'python'})
+
+
+from django.shortcuts import redirect
+
+
+def demo_view3(request):
+    return redirect('/static/index.html')

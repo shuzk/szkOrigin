@@ -13,6 +13,7 @@ urlpatterns = [
 
     url(r'^response/', views.demo_view),
     url(r'^responsejson/', views.demo_view2),
+    url(r'^redirect/', views.demo_view3),
 
     url(r'^$', views.index, name='index'),
 ]
