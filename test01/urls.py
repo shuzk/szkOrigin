@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^cookie_read/', views.cookie_read),
 
     url(r'^register/', views.register),
+    url(r'^RegisterView/', views.RegisterView.as_view()),
 
     url(r'^$', views.index, name='index'),
 ]

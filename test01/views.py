@@ -100,6 +100,7 @@ def cookie_read(request):
     return HttpResponse('OK')
 
 # =========== 类视图 ===============
+# HTTP请求方式的支持时，便需要在一个函数中编写不同的业务逻辑，代码可读性与复用性都不佳
 def register(request):
     """处理注册"""
 
@@ -109,4 +110,18 @@ def register(request):
         return render(request, 'register.html')
     else:
         # 处理POST请求，实现注册逻辑
+        return HttpResponse('这里实现注册逻辑')
+
+# 使用类视图可以将视图对应的不同请求方式以类中的不同方法来区别定义
+from django.views.generic import View
+
+class RegisterView(View):
+    """类视图：处理注册"""
+
+    def get(self, request):
+        """处理GET请求，返回注册页面"""
+        return render(request, 'register.html')
+
+    def post(self, request):
+        """处理POST请求，实现注册逻辑"""
         return HttpResponse('这里实现注册逻辑')
