@@ -4,5 +4,8 @@ from django.contrib import admin
 
 from . import views
 urlpatterns = [
-    url(r'^', views.index, name='index')
+    url(r'^weather/([a-z]+)/(\d{4})/$', views.weather),
+
+
+    url(r'^$', views.index, name='index'),
 ]
