@@ -71,3 +71,10 @@ def demo_view(request):
     # response.status_code = 400
     # response['Itcast'] = 'Python'
     # return response
+
+
+from django.http import JsonResponse
+
+
+def demo_view2(request):
+    return JsonResponse({'city': 'beijing', 'subject': 'python'})
