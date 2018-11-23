@@ -18,5 +18,7 @@ urlpatterns = [
     url(r'^cookie_set/', views.cookie_set),
     url(r'^cookie_read/', views.cookie_read),
 
+    url(r'^register/', views.register),
+
     url(r'^$', views.index, name='index'),
 ]

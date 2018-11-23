@@ -92,7 +92,21 @@ def cookie_set(request):
     response.set_cookie('itcast1', 'python1')  # 临时cookie
     response.set_cookie('itcast2', 'python2', max_age=3600)  # 有效期一小时
     return response
+
+
 def cookie_read(request):
     cookie1 = request.COOKIES.get('itcast1')
     print(cookie1)
     return HttpResponse('OK')
+
+# =========== 类视图 ===============
+def register(request):
+    """处理注册"""
+
+    # 获取请求方法，判断是GET/POST请求
+    if request.method == 'GET':
+        # 处理GET请求，返回注册页面
+        return render(request, 'register.html')
+    else:
+        # 处理POST请求，实现注册逻辑
+        return HttpResponse('这里实现注册逻辑')
