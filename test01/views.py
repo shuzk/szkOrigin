@@ -85,3 +85,14 @@ from django.shortcuts import redirect
 
 def demo_view3(request):
     return redirect('/static/index.html')
+
+
+def cookie_set(request):
+    response = HttpResponse('ok')
+    response.set_cookie('itcast1', 'python1')  # 临时cookie
+    response.set_cookie('itcast2', 'python2', max_age=3600)  # 有效期一小时
+    return response
+def cookie_read(request):
+    cookie1 = request.COOKIES.get('itcast1')
+    print(cookie1)
+    return HttpResponse('OK')
