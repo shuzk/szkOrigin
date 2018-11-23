@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# 代表的是项目跟路径
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -23,6 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0d53*g)e3gq(4ss*nshsvwk7@4c@9@a#uu)lf9h@k^eaog6xy+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# 设置为debug模式，部署上线时设置为DEBUG=False
 DEBUG = True
 
 ALLOWED_HOSTS = []
