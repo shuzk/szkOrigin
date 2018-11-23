@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^qs/', views.qs),
     url(r'^get_body/', views.get_body),
     url(r'^json/', views.get_body_json),
+    url(r'^headers/', views.get_headers),
 
 
     url(r'^$', views.index, name='index'),

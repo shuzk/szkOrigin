@@ -52,3 +52,8 @@ def get_body_json(request):
     print(req_data['a'])
     print(req_data['b'])
     return HttpResponse('OK')
+
+
+def get_headers(request):
+    print(request.META['CONTENT_TYPE'])
+    return HttpResponse('OK')
