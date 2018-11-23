@@ -21,3 +21,24 @@ def weather2(request, year, city):
     print('city=%s' % city)
     print('year=%s' % year)
     return HttpResponse('OK')
+
+
+# /qs/?a=1&b=2&a=3
+def qs(request):
+    a = request.GET.get('a')
+    b = request.GET.get('b')
+    alist = request.GET.getlist('a')
+    print(a)  # 3
+    print(b)  # 2
+    print(alist)  # ['1', '3']
+    return HttpResponse('OK')
+
+
+# def get_body(request):
+#     a = request.POST.get('a')
+#     b = request.POST.get('b')
+#     alist = request.POST.getlist('a')
+#     print(a)
+#     print(b)
+#     print(alist)
+#     return HttpResponse('OK')
