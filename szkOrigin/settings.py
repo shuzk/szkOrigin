@@ -29,7 +29,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+# 存储在数据库中，如下设置可以写，也可以不写，这是默认存储方式。
+# SESSION_ENGINE='django.contrib.sessions.backends.db'
+# 存储在本机内存中，如果丢失则不能找回，比数据库的方式读写更快。
+# SESSION_ENGINE='django.contrib.sessions.backends.cache'
+# 优先从本机内存中存取，如果没有则从数据库中存取。
+# SESSION_ENGINE='django.contrib.sessions.backends.cached_db'
 # Application definition
 
 INSTALLED_APPS = [
@@ -133,3 +138,16 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_files'),
 ]
+
+# session配置
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
