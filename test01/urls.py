@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^weather2/(?P<city>[a-z]+)/(?P<year>\d{4})/$', views.weather2),
     url(r'^qs/', views.qs),
     url(r'^get_body/', views.get_body),
+    url(r'^json/', views.get_body_json),
 
 
     url(r'^$', views.index, name='index'),

@@ -42,3 +42,13 @@ def get_body(request):
     print(b)
     print(alist)
     return HttpResponse('OK')
+
+
+import json
+def get_body_json(request):
+    json_str = request.body
+    json_str = json_str.decode()  # python3.6 无需执行此步
+    req_data = json.loads(json_str)
+    print(req_data['a'])
+    print(req_data['b'])
+    return HttpResponse('OK')
