@@ -100,7 +100,7 @@ def cookie_read(request):
     return HttpResponse('OK')
 
 # =========== 类视图 ===============
-# HTTP请求方式的支持时，便需要在一个函数中编写不同的业务逻辑，代码可读性与复用性都不佳
+# HTTP请求方式的支持时，便需要在一个函数中编写不同的业务逻辑，代码可读性与复用性都不佳-------------------------
 def register(request):
     """处理注册"""
 
@@ -112,7 +112,7 @@ def register(request):
         # 处理POST请求，实现注册逻辑
         return HttpResponse('这里实现注册逻辑')
 
-# 使用类视图可以将视图对应的不同请求方式以类中的不同方法来区别定义
+# 使用类视图可以将视图对应的不同请求方式以类中的不同方法来区别定义------------------
 from django.views.generic import View
 
 class RegisterView(View):
@@ -125,3 +125,21 @@ class RegisterView(View):
     def post(self, request):
         """处理POST请求，实现注册逻辑"""
         return HttpResponse('这里实现注册逻辑')
+
+
+# 给类视图添加装饰其----------------------------
+def my_decorator(func):
+    def wrapper(request, *args, **kwargs):
+        print('自定义装饰器被调用了')
+        print('请求路径%s' % request.path)
+        return func(request, *args, **kwargs)
+    return wrapper
+
+class DemoView(View):
+    def get(self, request):
+        print('get方法')
+        return HttpResponse('ok')
+
+    def post(self, request):
+        print('post方法')
+        return HttpResponse('ok')

@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^register/', views.register),
     url(r'^RegisterView/', views.RegisterView.as_view()),
 
+    url(r'^demoView/$', views.my_decorator(views.DemoView.as_view())),
+
     url(r'^$', views.index, name='index'),
 ]
