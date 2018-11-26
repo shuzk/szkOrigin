@@ -25,5 +25,7 @@ urlpatterns = [
     url(r'^demoView2/$', views.DemoView2.as_view()),
     url(r'^demoView3/$', views.DemoView3.as_view()),
 
+    url(r'^middleware/$', views.demo_view_middleware),  # 中间件
+
     url(r'^$', views.index, name='index'),
 ]

@@ -195,3 +195,10 @@ class DemoView3(BaseViewA, Base2ViewA, View):
         return HttpResponse('get page')
     def post(self, request):
         return HttpResponse('post page')
+
+
+# ==================================================
+# 中间件
+def demo_view_middleware(request):
+    print('view 视图被调用')
+    return HttpResponse('OK')
