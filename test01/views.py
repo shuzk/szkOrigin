@@ -128,6 +128,7 @@ class RegisterView(View):
 
 
 # 给类视图添加装饰其----------------------------
+# 此种方式会为类视图中的所有请求方法都加上装饰器行为（因为是在视图入口处，分发请求方式前）
 def my_decorator(func):
     def wrapper(request, *args, **kwargs):
         print('自定义装饰器被调用了')
