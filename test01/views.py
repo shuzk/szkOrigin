@@ -131,7 +131,7 @@ class RegisterView(View):
 # 此种方式会为类视图中的所有请求方法都加上装饰器行为（因为是在视图入口处，分发请求方式前）
 def my_decorator(func):
     def wrapper(request, *args, **kwargs):
-        print('自定义装饰器被调用了')
+        print('自定义装饰器my_decorator被调用了')
         print('请求路径%s' % request.path)
         return func(request, *args, **kwargs)
     return wrapper
@@ -144,3 +144,54 @@ class DemoView(View):
     def post(self, request):
         print('post方法')
         return HttpResponse('ok')
+
+def my_decorator2(func):
+    def wrapper(request, *args, **kwargs):
+        print('自定义装饰器my_decorator2被调用了')
+        print('请求路径%s' % request.path)
+        return func(request, *args, **kwargs)
+
+    return wrapper
+# ====================================================
+# 类视图Mixin扩展类
+class BaseView(View):
+    @classmethod
+    def as_view(cls, *args, **kwargs):
+        view = super().as_view(*args, **kwargs)
+        view = my_decorator(view)
+        return view
+
+class Base2View(View):
+    @classmethod
+    def as_view(cls, *args, **kwargs):
+        view = super().as_view(*args, **kwargs)
+        view = my_decorator2(view)
+        return view
+
+class DemoView2(BaseView, Base2View):
+    def get(self, request):
+        return HttpResponse('get page')
+    def post(self, request):
+        return HttpResponse('post page')
+#-------------------------------------------------------
+class BaseViewA(object):
+    @classmethod
+    def as_view(cls, *args, **kwargs):
+        print(super)
+        view = super().as_view(*args, **kwargs)
+        view = my_decorator(view)
+        return view
+
+class Base2ViewA(object):
+    @classmethod
+    def as_view(cls, *args, **kwargs):
+        print(super)
+        view = super().as_view(*args, **kwargs)
+        view = my_decorator2(view)
+        return view
+
+class DemoView3(BaseViewA, Base2ViewA, View):
+    def get(self, request):
+        return HttpResponse('get page')
+    def post(self, request):
+        return HttpResponse('post page')

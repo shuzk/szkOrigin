@@ -1,4 +1,3 @@
-
 from django.conf.urls import url, include
 from django.contrib import admin
 
@@ -22,6 +21,9 @@ urlpatterns = [
     url(r'^RegisterView/', views.RegisterView.as_view()),
 
     url(r'^demoView/$', views.my_decorator(views.DemoView.as_view())),
+
+    url(r'^demoView2/$', views.DemoView2.as_view()),
+    url(r'^demoView3/$', views.DemoView3.as_view()),
 
     url(r'^$', views.index, name='index'),
 ]
