@@ -1,6 +1,21 @@
 from django.db import models
 
 # Create your models here.
+
+
+class StudentsInfoManager(models.Manager):
+    def all(self):
+        return super().filter(is_delete=False)
+    def create_student(self, id, name, age):
+        student = self.model()
+        student.sid = id
+        student.sname = name
+        student.sage = age
+        student.sgender = 0
+        student.is_delete = False
+        student.save()
+        return student
+
 class StudentsInfo(models.Model):
     GENDER_CHOICES = (
         (0, 'male'),
@@ -24,6 +39,22 @@ class StudentsInfo(models.Model):
     def __str__(self):
         return self.sname
 
+    students = StudentsInfoManager()
+
+class CardsInfoManager(models.Manager):
+    def all(self):
+        return super().filter(is_delete=False)
+    def create_card(self, id, name, date, student):
+        card = self.model()
+        card.cid = id
+        card.cname = name
+        card.cdate = date
+        card.cstudent = student
+        card.is_delete = False
+        card.save()
+        return card
+
+
 class CardsInfo(models.Model):
     cid = models.IntegerField(primary_key=True, verbose_name='卡号')
     cname = models.CharField(max_length=20, verbose_name='什么卡', unique=True)
@@ -39,3 +70,6 @@ class CardsInfo(models.Model):
 
     def __str__(self):
         return self.cname
+
+    cards = CardsInfoManager()
+
