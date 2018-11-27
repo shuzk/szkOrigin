@@ -10,6 +10,9 @@ class StudentsInfo(models.Model):
     sname = models.CharField(max_length=20, verbose_name='姓名', unique=True)
     sage = models.IntegerField(verbose_name='年龄')
     sgender = models.BooleanField(choices=GENDER_CHOICES, default=0, verbose_name='性别')
+    # You are trying to add a non-nullable field 'sdate' to studentsinfo without a default; we can't do that (the database needs something to populate existing rows).
+    # sdate = models.DateField(verbose_name='入学日期')
+    # scomment = models.CharField
     is_delete = models.BooleanField(default=False, verbose_name='删除个人')
 
     class Meta:
@@ -17,3 +20,22 @@ class StudentsInfo(models.Model):
         verbose_name = '学生表'  # 在admin站点中显示的名称
         verbose_name_plural =verbose_name  # 显示的复数名称
 
+    # 在admin站点中显示字段
+    def __str__(self):
+        return self.sname
+
+class CardsInfo(models.Model):
+    cid = models.IntegerField(primary_key=True, verbose_name='卡号')
+    cname = models.CharField(max_length=20, verbose_name='什么卡', unique=True)
+    cdate = models.DateField(verbose_name='注册卡日期')
+    cstudent = models.ForeignKey(StudentsInfo, on_delete=models.CASCADE, verbose_name='卡外键')
+    is_delete = models.BooleanField(default=False, verbose_name='逻辑删除')
+
+    class Meta:
+        db_table = 'cards'
+        # 以下两行在admin中显示名称
+        verbose_name = '卡名称'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.cname
