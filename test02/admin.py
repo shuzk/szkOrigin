@@ -6,4 +6,8 @@
 from django.contrib import admin
 from test02.models import StudentsInfo
 
-admin.site.register(StudentsInfo)
+# admin.site.register(StudentsInfo)
+
+@admin.register(StudentsInfo)
+class StudentsInfoAdmin(admin.ModelAdmin):
+    pass
