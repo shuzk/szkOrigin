@@ -30,6 +30,11 @@ class StudentsInfo(models.Model):
     # scomment = models.CharField
     is_delete = models.BooleanField(default=False, verbose_name='删除个人')
 
+    def old(self):
+        return self.sage-20
+    old.short_description = '二十几岁'
+    old.admin_order_field = 'sage'
+
     class Meta:
         db_table = 'students'  # 指明数据库表名
         verbose_name = '学生表'  # 在admin站点中显示的名称
@@ -61,6 +66,15 @@ class CardsInfo(models.Model):
     cdate = models.DateField(verbose_name='注册卡日期')
     cstudent = models.ForeignKey(StudentsInfo, on_delete=models.CASCADE, verbose_name='卡外键')
     is_delete = models.BooleanField(default=False, verbose_name='逻辑删除')
+
+    def pub_date(self):
+        return self.cdate.strftime('%Y年%m月%d日')
+    pub_date.short_description = '办理日期'
+
+    def c_sid(self):
+        return self.cstudent.sid
+    c_sid.short_description = '所属学生id'
+    c_sid.admin_order_field = 'cid'
 
     class Meta:
         db_table = 'cards'
