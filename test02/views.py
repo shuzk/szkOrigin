@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse
 from django.template import loader
+from rest_framework.viewsets import ModelViewSet
 
 from .forms import StudentForm
+from .serializers import StudentsInfoSerializer
+from .models import StudentsInfo
 
 
 class StudentView(View):
@@ -39,3 +42,9 @@ def index2(request):
         'alist': [1, 2, 3, 4, 5]
     }
     return render(request, 'index.html', context)
+
+class StudentsInfoViewSet(ModelViewSet):
+    # queryset = StudentsInfo.objects.all()  # StudentsInfo没有默认属性objects，自定义属性students
+    queryset = StudentsInfo.students.all()
+    print(queryset)
+    serializer_class = StudentsInfoSerializer

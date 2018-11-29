@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'test01.apps.Test01Config',
     'test02.apps.Test02Config',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'test01.middleware.my_middleware',  # 添加中间件
-    # 'rest_framework',
 ]
 
 ROOT_URLCONF = 'szkOrigin.urls'
