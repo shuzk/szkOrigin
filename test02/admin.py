@@ -6,6 +6,9 @@
 from django.contrib import admin
 from test02.models import StudentsInfo, CardsInfo
 
+admin.site.site_header = "学生与卡"
+admin.site.site_title = '学生卡aaa'
+admin.site.index_title = '欢迎来到学生卡'
 
 # class CardsInfoStackInline(admin.StackedInline):
 class CardsInfoTabularInline(admin.TabularInline):
