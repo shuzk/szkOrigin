@@ -13,6 +13,7 @@ class StudentsInfoManager(models.Manager):
         student.sage = age
         student.sgender = 0
         student.is_delete = False
+        # student.image = True
         student.save()
         return student
 
@@ -29,6 +30,7 @@ class StudentsInfo(models.Model):
     # sdate = models.DateField(verbose_name='入学日期')
     # scomment = models.CharField
     is_delete = models.BooleanField(default=False, verbose_name='删除个人')
+    image = models.ImageField(upload_to='test02', verbose_name='图片', null=True)
 
     def old(self):
         return self.sage-20
