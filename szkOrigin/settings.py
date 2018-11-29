@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'test01.middleware.my_middleware',  # 添加中间件
+    # 'rest_framework',
 ]
 
 ROOT_URLCONF = 'szkOrigin.urls'
