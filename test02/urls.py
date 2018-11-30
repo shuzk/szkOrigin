@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^student/', views.StudentView.as_view()),
     url(r'^index/', views.index),
     url(r'^index2/', views.index2),
-
+    # url(r'^studentsViewSet/', views.StudentsInfoViewSet.as_view(), name='studentsa'),
 ]
 
 router = DefaultRouter()  # 可以处理视图的路由器
