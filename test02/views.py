@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse
 from django.template import loader
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -55,4 +56,14 @@ class StudentsListView(APIView):
     def get(self,request):
         students = StudentsInfo.students.all()
         serializer = StudentsInfoSerializer(students, many=True)
+        return Response(serializer.data)
+
+
+class StudentsDetailView(GenericAPIView):
+    queryset = StudentsInfo.students.all()
+    serializer_class = StudentsInfoSerializer
+
+    def get(self, request, pk):
+        student = self.get_object()
+        serializer = self.get_serializer(student)
         return Response(serializer.data)
