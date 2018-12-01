@@ -21,21 +21,35 @@ class StudentsInfoSerializer(serializers.ModelSerializer):
     is_delete = serializers.BooleanField(label='逻辑删除', required=False)
     image = serializers.ImageField(label='图片', required=False)
 
-    def validate_sname(self,value):
-        if 'shuzk' not in value.lower():
-            raise serializers.ValidationError('名称不是关于shuzk的')
-        return value
-    def validate(self, attrs):
-        # i = attrs['sid']
-        g = attrs['sage']
-        if 20 > g:
-            raise serializers.ValidationError('id大于年龄')
-        return attrs
-
+    # def validate_sname(self,value):
+    #     if 'shuzk' not in value.lower():
+    #         raise serializers.ValidationError('名称不是关于shuzk的')
+    #     return value
+    # def validate(self, attrs):
+    #     # i = attrs['sid']
+    #     g = attrs['sage']
+    #     if 20 > g:
+    #         raise serializers.ValidationError('id大于年龄')
+    #     return attrs
 
     class Meta:
         model = StudentsInfo
         fields = '__all__'
+
+    def create(self, validated_data):
+        """新建"""
+        return StudentsInfo(**validated_data)
+
+    def update(self, instance, validated_data):
+        """更新，instance为要更新的对象实例"""
+        instance.sid = validated_data.get('sid', instance.sid)
+        instance.sname = validated_data.get('sname', instance.sname)
+        instance.sage = validated_data.get('sage', instance.sage)
+        instance.sgender = validated_data.get('sgender', instance.sgender)
+        instance.is_delete = validated_data.get('is_delete', instance.is_delete)
+        instance.image = validated_data.get('image', instance.image)
+        # instance.save()
+        return instance
 
 
 class CardsInfoSerializer(serializers.Serializer):
