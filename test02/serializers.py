@@ -3,6 +3,10 @@ from rest_framework import serializers
 from test02.models import StudentsInfo
 
 
+def about_django(value):
+    if 'django' not in value.lower():
+        raise serializers.ValidationError('名字不是关于django的')
+
 class StudentsInfoSerializer(serializers.ModelSerializer):
     """学生表数据序列器"""
     GENDER_CHOICES = (
@@ -10,7 +14,7 @@ class StudentsInfoSerializer(serializers.ModelSerializer):
         (1, 'female')
     )
     sid = serializers.IntegerField(label='ID', read_only=True)
-    sname = serializers.CharField(label='名字', max_length=20)
+    sname = serializers.CharField(label='名字', max_length=20, validators=[about_django])
     sage = serializers.IntegerField(label='年龄', required=False)
     # sgender = serializers.BooleanField(label='性别', required=False)
     sgender = serializers.ChoiceField(choices=GENDER_CHOICES, label='性别', required=False)
