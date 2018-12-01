@@ -21,6 +21,13 @@ class StudentsInfoSerializer(serializers.ModelSerializer):
         if 'shuzk' not in value.lower():
             raise serializers.ValidationError('名称不是关于shuzk的')
         return value
+    def validate(self, attrs):
+        # i = attrs['sid']
+        g = attrs['sage']
+        if 20 > g:
+            raise serializers.ValidationError('id大于年龄')
+        return attrs
+
 
     class Meta:
         model = StudentsInfo
