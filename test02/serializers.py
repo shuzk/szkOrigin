@@ -17,6 +17,11 @@ class StudentsInfoSerializer(serializers.ModelSerializer):
     is_delete = serializers.BooleanField(label='逻辑删除', required=False)
     image = serializers.ImageField(label='图片', required=False)
 
+    def validate_sname(self,value):
+        if 'shuzk' not in value.lower():
+            raise serializers.ValidationError('名称不是关于shuzk的')
+        return value
+
     class Meta:
         model = StudentsInfo
         fields = '__all__'
@@ -27,6 +32,7 @@ class CardsInfoSerializer(serializers.Serializer):
     cid = serializers.IntegerField(label='卡id', read_only=True)
     cname = serializers.CharField(label='卡名称', max_length=20)
     cdate = serializers.DateField(label='办卡日期', required=False)
+
     # 外键序列化方式1——PrimaryKeyRelatedField
     # cstudent = serializers.PrimaryKeyRelatedField(label='关联学生', queryset=StudentsInfo.students.all())
     # 外键序列化方式2——StringRelatedField
@@ -40,9 +46,10 @@ class CardsInfoSerializer(serializers.Serializer):
     # 重写to_representation方法，适用于所有的字段
     class cStudentRelatedField(serializers.RelatedField):
         """自定义用于处理外键学生的字段"""
-        def to_representation(self, value):
-            return 'cStudent: %d  %s'%(value.sid, value.sname)
-    cstudent = cStudentRelatedField(read_only=True)
 
+        def to_representation(self, value):
+            return 'cStudent: %d  %s' % (value.sid, value.sname)
+
+    cstudent = cStudentRelatedField(read_only=True)
 
     is_delete = serializers.BooleanField(label='逻辑删除卡', required=False)
