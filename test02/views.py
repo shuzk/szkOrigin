@@ -17,3 +17,4 @@ class StudentsListAPIView(APIView):
         serializer = StudentsInfoSerializer(queryset, many=True)
 
         return Response(serializer.data)
+# 上一个是APIView
