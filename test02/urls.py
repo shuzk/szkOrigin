@@ -19,7 +19,8 @@ urlpatterns = [
     # url(r'^str/(?P<pk>\d+)/sname/', views.StudentsInfoViewSet.as_view({'put': 'sname'})),
 
 
-    url(r'students/$', views.StudentsListAPIView.as_view())
+    url(r'students/$', views.StudentsListAPIView.as_view()),
+    url(r'students/(?P<pk>\d+)/$', views.StudentsDetailAPIView.as_view()),
 ]
 
 # router = DefaultRouter()  # 可以处理视图的路由器
