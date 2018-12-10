@@ -4,7 +4,12 @@ from . import views
 from rest_framework.routers import DefaultRouter
 
 from . import views
+
+router = DefaultRouter()  # 可以处理视图的路由器
+# 不能加^和/
+router.register(r'students', views.StudentsInfoViewSet)  # 向路由器中注册视图集
 urlpatterns = [
+    url(r"", include(router.urls))
     # url(r'^student/', views.StudentView.as_view()),
     # url(r'^index/', views.index),
     # url(r'^index2/', views.index2),
@@ -19,11 +24,18 @@ urlpatterns = [
     # url(r'^str/(?P<pk>\d+)/sname/', views.StudentsInfoViewSet.as_view({'put': 'sname'})),
 
 
-    url(r'students/$', views.StudentsListAPIView.as_view()),
-    url(r'students/(?P<pk>\d+)/$', views.StudentsDetailAPIView.as_view()),
+    # url(r'students/$', views.StudentsListAPIView.as_view()),
+    # url(r'students/(?P<pk>\d+)/$', views.StudentsDetailAPIView.as_view()),
+
+
+    # url(r'students/$', views.StudentsInfoViewSet.as_view({'get': 'list'})),
+    # url(r'students/(?P<pk>\d)/$', views.StudentsInfoViewSet.as_view({'get': 'retrieve'})),
+    # url(r'students/latest/$', views.StudentsInfoViewSet.as_view({'get': 'latest'})),
+    # url(r'students/(?P<pk>\d)/age/$', views.StudentsInfoViewSet.as_view({'put': 'age'})),
+
 ]
 
 # router = DefaultRouter()  # 可以处理视图的路由器
 # # 不能加^和/
-# router.register(r'studentsViewSet', views.StudentsInfoViewSet)  # 向路由器中注册视图集
+# router.register(r'students', views.StudentsInfoViewSet)  # 向路由器中注册视图集
 # urlpatterns += router.urls  # 将路由器中的所有路由信息追到django的路由列表中
